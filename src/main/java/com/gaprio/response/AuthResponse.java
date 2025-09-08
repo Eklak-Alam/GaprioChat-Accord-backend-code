@@ -1,25 +1,29 @@
 package com.gaprio.response;
 
 import com.gaprio.entities.Role;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.UUID;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class AuthResponse {
+    private UUID userId;
     private String token;
     private Date expiresAt;
     private String username;
     private Role role;
 
-    public AuthResponse() {
+    public UUID getUserId() {
+        return userId;
     }
 
-    public AuthResponse(String token, Date expiresAt, String username, Role role) {
-        this.token = token;
-        this.expiresAt = expiresAt;
-        this.username = username;
-        this.role = role;
+    public void setUserId(UUID userId) {
+        this.userId = userId;
     }
 
     public String getToken() {

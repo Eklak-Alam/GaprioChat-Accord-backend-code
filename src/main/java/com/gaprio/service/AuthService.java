@@ -87,11 +87,13 @@ public class AuthService {
             String token = jwtUtil.generateToken(user.getUsername());
 
             return new AuthResponse(
+                    user.getId(),
                     token,
                     new Date(System.currentTimeMillis() + jwtUtil.getJwtExpiration()),
                     user.getUsername(),
                     user.getRole()
             );
+
         } catch (AuthenticationException e) {
             throw new BadCredentialsException("Invalid username or password");
         }
