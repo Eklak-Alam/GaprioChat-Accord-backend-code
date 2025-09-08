@@ -55,8 +55,15 @@ public class UserService {
         String searchQuery = query.trim();
         Pageable pageable = PageRequest.of(0, limit > 0 ? limit : 20);
 
+        System.out.println("Searching for: '" + searchQuery + "' with limit: " + limit);
+
         Page<User> resultPage = userRepository.searchUsers(searchQuery, pageable);
-        return resultPage.getContent(); // Convert Page to List
+        List<User> results = resultPage.getContent();
+
+        System.out.println("Found " + results.size() + " users");
+        results.forEach(user -> System.out.println("User: " + user.getUsername()));
+
+        return results;
     }
 
 
